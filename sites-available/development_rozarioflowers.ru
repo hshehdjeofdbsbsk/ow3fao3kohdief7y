@@ -21,7 +21,7 @@
 
 # sudo certbot certonly --manual --preferred-challenges=dns -d "*.entropyrise.ru" -d entropyrise.ru certonly # https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.entropyrise.ru
 
-upstream app_server { # 🦄 ✖️  🔫
+upstream app_server { # 🔫 🦄 🪅
   server unix:/srv/fastapi-app/run/gunicorn.sock fail_timeout=0;
 }
 
@@ -68,7 +68,7 @@ server {
   passenger_enabled on;
   passenger_app_group_name '🌹 Rozaro Flowers 💎 Padrino web application (development modus)';
   # passenger_app_log_file /var/log/passenger.development.log; # This option is available in Passenger Enterprise only
-  passenger_user admin; # 
+  passenger_user admin; # 🃏
   passenger_ruby /home/admin/.asdf/shims/ruby;
   passenger_nodejs /home/admin/.asdf/shims/node;
   passenger_app_env development;
@@ -79,9 +79,9 @@ server {
   passenger_base_uri /;
   passenger_app_root /srv/development_rozarioflowers.ru;
   passenger_document_root /srv/development_rozarioflowers.ru/public;
-  # passenger_max_requests 666;    # This feature is only available in Phusion Passenger Enterprise
-  # passenger_memory_limit 256;    # This feature is only available in Phusion Passenger Enterprise
-  # passenger_max_request_time 10; # This feature is only available in Phusion Passenger Enterprise
+  # passenger_max_requests 666;    # This feature is only available in Phusion Passenger Enterprise 💰
+  # passenger_memory_limit 256;    # This feature is only available in Phusion Passenger Enterprise 💰
+  # passenger_max_request_time 10; # This feature is only available in Phusion Passenger Enterprise 💰
   passenger_min_instances 1;
 
   # ---
@@ -147,23 +147,23 @@ server {
     internal;
     root /srv/public/;
     try_files $uri @grunt =404;
-    add_header 'X-Nginx-Location-Public' 'true' always;
+    add_header 'X-Nginx-Location-Public' 'true' always; # 🏷
   }
   location @grunt { # 🐗 vk.cc/cRk3u6
     passenger_enabled off;
     internal;
     root /srv/grunt/dest/;
     try_files $uri =404; # @passenger;
-    add_header 'X-Nginx-Location-Grunt' 'true' always;
+    add_header 'X-Nginx-Location-Grunt' 'true' always; # 🏷
   }
   location @passenger { # FWIW 🪗
     passenger_sticky_sessions on;
     passenger_base_uri /;
     passenger_app_root /srv/development_rozarioflowers.ru;
     passenger_document_root /srv/development_rozarioflowers.ru/public;
-    # passenger_max_requests 666;    # This feature is only available in Phusion Passenger Enterprise
-    # passenger_memory_limit 256;    # This feature is only available in Phusion Passenger Enterprise
-    # passenger_max_request_time 10; # This feature is only available in Phusion Passenger Enterprise
+    # passenger_max_requests 666;    # This feature is only available in Phusion Passenger Enterprise # 💰
+    # passenger_memory_limit 256;    # This feature is only available in Phusion Passenger Enterprise # 💰
+    # passenger_max_request_time 10; # This feature is only available in Phusion Passenger Enterprise # 💰
     passenger_min_instances 1;
     passenger_set_header X-Nginx-Passenger-Context "location @passenger"; # 🏷
     include proxy_params;
@@ -171,7 +171,7 @@ server {
     include common_security_headers;
     include common_access_control_headers;
     # modsecurity on;
-    add_header 'X-Nginx-Location-Passenger' 'true' always;
+    add_header 'X-Nginx-Location-Passenger' 'true' always; # 🏷
   }
   location = /favicon.ico { # ⛩
     passenger_enabled off;
@@ -189,7 +189,7 @@ server {
     add_header Cache-Control "public, max-age=31536000, immutable";
     expires 1y; # Устанавливаем срок действия кэша на 1 год
     include common_access_control_headers;
-    add_header 'X-Nginx-Location-1' '1' always;
+    add_header 'X-Nginx-Location-1' '1' always; # 🏷
   }
   location ~* ^(.+)\.(png|jpg|jpeg)$ { #KD9F09E # 🌅
     passenger_enabled off;
@@ -207,7 +207,7 @@ server {
     add_header Cache-Control "public, max-age=31536000, immutable";
     expires 1y; # Устанавливаем срок действия кэша на 1 год
     include common_access_control_headers;
-    add_header 'X-Nginx-Location-2' '2' always;
+    add_header 'X-Nginx-Location-2' '2' always; # 🏷
   }
   location ~* ^.+\.(bmp|webp|gif|svg|js|css|mp3|ogg|mpe?g|avi|zip|gz|bz2?|rar|ico|js|html)(\?v=[a-zA-Z0-9\.\-_]+)?$ { # Media 
     passenger_enabled off;
@@ -219,7 +219,7 @@ server {
     add_header Cache-Control "public, max-age=31536000, immutable";
     expires 1y; # Устанавливаем срок действия кэша на 1 год
     include common_access_control_headers;
-    add_header 'X-Nginx-Location-3' '3' always;
+    add_header 'X-Nginx-Location-3' '3' always; # 🏷
   }
   location ~ /\.(ht|svn|git|hg|bzr) { return 444; } # 🤔
   location = /robots.txt { passenger_enabled off; default_type text/plain; return 200 "User-agent: *\nDisallow: /\nHost: $host\n"; } # 🤖 https://www.robotstxt.org/
