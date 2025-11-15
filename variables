@@ -1,0 +1,53 @@
+# sudo nginx -t && sudo nginx -s reload && sudo systemctl status nginx --no-pager -l
+
+map $http_upgrade $connection_upgrade { # http://nginx.org/en/docs/http/websocket.html
+  default upgrade;
+  ''      close;
+}
+
+map $http_user_agent $legitimate_robot_header { # Определяем, является ли клиент "легитимным ботом" по его `User-Agent`-заголовку. Присваивает переменной `$legitimate_robot_header` значение `"1"` — если найден, иначе `"0"`.
+  default "0"; # По умолчанию — не бот (praesumptio)
+  # === Основные поисковые системы ===
+  "~*(googlebot|google-site-verification|mediapartners-google)" "1";
+  "~*(yandex|yadirect|yandexmetrika|yandexmobilebot)"           "1";
+  "~*(bingbot|msnbot|adidxbot)"                                 "1";
+  "~*(baiduspider|baidu|baiduspider-image|baiduspider-video)"   "1";
+  "~*(duckduckbot|ddg\ searchbot)"                              "1";
+  # === Контентные и SEO-боты ===
+  "~*(ahrefsbot|semrushbot|mj12bot|dotbot|petalbot|linkpadbot|megaindex|statdom|webdatastats|cocolyzebot)" "1";
+  # === Социальные сети и мессенджеры ===
+  "~*(facebookexternalhit|facebot|twitterbot|linkedinbot|pinterestbot|telegrambot|whatsapp)" "1";
+  # === Ассистенты и сборщики данных ===
+  "~*(applebot|gptbot|claudebot|anthropic-ai|perplexitybot|tineye|bytespider|cohere-ai|diffbot|youibot)" "1";
+  # === Региональные или редкие поисковики ===
+  "~*(sogou|exabot|qwantify|naverbot|seznambot|mail\.ru_bot|sputnikbot|jooblebot|mojeekbot)" "1";
+}
+
+map $host $root_domain {
+  ~(?P<root>[a-z0-9-]+\.[a-z]+)$ $root;
+  ~(?P<root>[a-z0-9-]+\.[a-z0-9-]+\.[a-z]+)$ $root;
+  default $host;
+}
+
+map $host $subdomain {
+   ~^([^.]+)\.entropyrise\.ru$ $1;
+   ~^([^.]+)\.rozarioflowers\.ru$ $1;
+  default "murmansk";
+}
+
+map $host $redirect_url { #UD9SSIU3
+  default "";
+  ~^([a-z0-9-]+)\.entropyrise\.ru$ https://$root_domain$request_uri;
+  ~^([a-z0-9-]+)\.rozarioflowers\.ru$ https://$root_domain$request_uri;
+}
+
+map $http_accept $webp_supported { # Переменная $http_accept содержит значение заголовка Accept, который отправляет клиент (браузер) и который описывает, какие типы содержимого браузер может обрабатывать. Директива map создаёт новую переменную $webp_supported, которая будет равна 1, если браузер поддерживает WebP, и 0, если нет.
+  default        0;
+  "~*image/webp" 1;
+}
+
+map $http_origin $cors_allow_origin {
+  default "";
+  ~^https://([a-z0-9-]+\.)?entropyrise\.ru$ $http_origin;
+  ~^https://([a-z0-9-]+\.)?rozarioflowers\.ru$ $http_origin;
+}

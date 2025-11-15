@@ -1,0 +1,41 @@
+upstream puma {
+  server unix:///tmp/puma.sock;
+}
+
+server {
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+  ssl_certificate     /etc/letsencrypt/live/hp-fulfilment.ru/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/hp-fulfilment.ru/privkey.pem;
+  include             /etc/letsencrypt/options-ssl-nginx.conf;
+  ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
+  server_name ~^(?!murmansk\.|www\.)[a-z0-9-]*\.?hp-fulfilment\.ru$;
+  root /srv/rozarioflowers.ru/public;
+
+  # Обработка запросов к статическим файлам напрямую через Nginx
+  location ~* ^/(assets|images|javascripts|stylesheets|favicon.ico|robots.txt) {
+    expires max;
+    add_header Cache-Control public;
+  }
+  location / {
+    try_files $uri @puma;
+    # try_files $uri $uri/ @puma;
+  }
+  location @puma {
+    passenger_enabled off;
+    proxy_pass http://puma;
+    # proxy_pass http://localhost:8080;
+    include /etc/nginx/proxy_params;
+    proxy_buffering on;
+    proxy_redirect off;
+  }
+  location = /test {
+    default_type text/html;
+    return 200 'gangnam!';
+  }
+  location ~ /\. {
+    deny all;
+  }
+  #error_log  /var/log/nginx/test.error.log;
+  #access_log /var/log/nginx/test.access.log;
+}

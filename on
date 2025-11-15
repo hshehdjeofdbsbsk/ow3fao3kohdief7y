@@ -1,0 +1,1265 @@
+{
+   "application_configurations" : {
+      "/srv/rozarioflowers.ru (development)" : {
+         "default_location_configuration" : {
+            "passenger_buffer_response" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : false
+                  }
+               ]
+            },
+            "passenger_buffer_size" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "4k|8k"
+                  }
+               ]
+            },
+            "passenger_buffer_upload" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : false
+                  }
+               ]
+            },
+            "passenger_buffers" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "8 4k|8k"
+                  }
+               ]
+            },
+            "passenger_busy_buffers_size" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "8k|16k"
+                  }
+               ]
+            },
+            "passenger_enabled" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "line" : 56,
+                        "path" : "/etc/nginx/sites-enabled/test",
+                        "type" : "web-server-config"
+                     },
+                     "value" : true
+                  },
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : false
+                  }
+               ]
+            },
+            "passenger_headers_hash_bucket_size" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : 64
+                  }
+               ]
+            },
+            "passenger_headers_hash_max_size" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : 512
+                  }
+               ]
+            },
+            "passenger_ignore_client_abort" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : false
+                  }
+               ]
+            },
+            "passenger_intercept_errors" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : false
+                  }
+               ]
+            },
+            "passenger_max_requests" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : 0
+                  }
+               ]
+            },
+            "passenger_request_buffering" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : true
+                  }
+               ]
+            },
+            "passenger_request_queue_overflow_status_code" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : 503
+                  }
+               ]
+            },
+            "passenger_spawn_exception_status_code" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : 500
+                  }
+               ]
+            },
+            "passenger_sticky_sessions" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : false
+                  }
+               ]
+            },
+            "passenger_sticky_sessions_cookie_attributes" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : "SameSite=Lax; Secure;"
+                  }
+               ]
+            },
+            "passenger_sticky_sessions_cookie_name" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : "_passenger_route"
+                  }
+               ]
+            }
+         },
+         "location_configurations" : [
+            {
+               "location_matcher" : {
+                  "type" : "prefix",
+                  "value" : "@passenger"
+               },
+               "options" : {
+                  "passenger_base_uri" : {
+                     "value_hierarchy" : [
+                        {
+                           "source" : {
+                              "line" : 66,
+                              "path" : "/etc/nginx/sites-enabled/test",
+                              "type" : "web-server-config"
+                           },
+                           "value" : [ "/" ]
+                        }
+                     ]
+                  },
+                  "passenger_document_root" : {
+                     "value_hierarchy" : [
+                        {
+                           "source" : {
+                              "line" : 68,
+                              "path" : "/etc/nginx/sites-enabled/test",
+                              "type" : "web-server-config"
+                           },
+                           "value" : "/srv/rozarioflowers.ru/public"
+                        }
+                     ]
+                  },
+                  "passenger_enabled" : {
+                     "value_hierarchy" : [
+                        {
+                           "source" : {
+                              "line" : 64,
+                              "path" : "/etc/nginx/sites-enabled/test",
+                              "type" : "web-server-config"
+                           },
+                           "value" : true
+                        },
+                        {
+                           "source" : {
+                              "line" : 56,
+                              "path" : "/etc/nginx/sites-enabled/test",
+                              "type" : "web-server-config"
+                           },
+                           "value" : true
+                        },
+                        {
+                           "source" : {
+                              "type" : "default"
+                           },
+                           "value" : false
+                        }
+                     ]
+                  },
+                  "passenger_sticky_sessions" : {
+                     "value_hierarchy" : [
+                        {
+                           "source" : {
+                              "line" : 65,
+                              "path" : "/etc/nginx/sites-enabled/test",
+                              "type" : "web-server-config"
+                           },
+                           "value" : true
+                        },
+                        {
+                           "source" : {
+                              "type" : "default"
+                           },
+                           "value" : false
+                        }
+                     ]
+                  }
+               },
+               "web_server_virtual_host" : {
+                  "server_names" : [ "^(?!murmansk\\.|www\\.)[a-z0-9-]*\\.?hp-fulfilment\\.ru$" ]
+               }
+            }
+         ],
+         "options" : {
+            "passenger_abort_websockets_on_process_shutdown" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : true
+                  }
+               ]
+            },
+            "passenger_app_env" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "line" : 59,
+                        "path" : "/etc/nginx/sites-enabled/test",
+                        "type" : "web-server-config"
+                     },
+                     "value" : "development"
+                  },
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : "production"
+                  }
+               ]
+            },
+            "passenger_app_group_name" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "inferred-default"
+                     },
+                     "value" : "/srv/rozarioflowers.ru (development)"
+                  },
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "passenger_app_root plus passenger_app_env"
+                  }
+               ]
+            },
+            "passenger_app_log_file" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "passenger_log_file"
+                  }
+               ]
+            },
+            "passenger_app_root" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "line" : 67,
+                        "path" : "/etc/nginx/sites-enabled/test",
+                        "type" : "web-server-config"
+                     },
+                     "value" : "/srv/rozarioflowers.ru"
+                  },
+                  {
+                     "source" : {
+                        "type" : "inferred-default"
+                     },
+                     "value" : "/srv/rozarioflowers.ru"
+                  },
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "Parent directory of the associated Nginx virtual host's root directory"
+                  }
+               ]
+            },
+            "passenger_app_type" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "Autodetected"
+                  }
+               ]
+            },
+            "passenger_debugger" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : false
+                  }
+               ]
+            },
+            "passenger_direct_instance_request_address" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : "127.0.0.1"
+                  }
+               ]
+            },
+            "passenger_force_max_concurrent_requests_per_process" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : -1
+                  }
+               ]
+            },
+            "passenger_friendly_error_pages" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "On if passenger_app_env is development, off otherwise"
+                  }
+               ]
+            },
+            "passenger_group" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "See the user account sandboxing rules"
+                  }
+               ]
+            },
+            "passenger_load_shell_envvars" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : true
+                  }
+               ]
+            },
+            "passenger_max_preloader_idle_time" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : 300
+                  }
+               ]
+            },
+            "passenger_max_request_queue_size" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : 100
+                  }
+               ]
+            },
+            "passenger_min_instances" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : 1
+                  }
+               ]
+            },
+            "passenger_nodejs" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : "node"
+                  }
+               ]
+            },
+            "passenger_preload_bundler" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : false
+                  }
+               ]
+            },
+            "passenger_python" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : "python"
+                  }
+               ]
+            },
+            "passenger_restart_dir" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : "tmp"
+                  }
+               ]
+            },
+            "passenger_ruby" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "line" : 58,
+                        "path" : "/etc/nginx/sites-enabled/test",
+                        "type" : "web-server-config"
+                     },
+                     "value" : "/home/admin/.asdf/shims/ruby"
+                  },
+                  {
+                     "source" : {
+                        "line" : 3,
+                        "path" : "/etc/nginx/conf.d/mod-http-passenger.conf",
+                        "type" : "web-server-config"
+                     },
+                     "value" : "/usr/bin/passenger_free_ruby"
+                  },
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : "ruby"
+                  }
+               ]
+            },
+            "passenger_spawn_method" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "'smart' for Ruby apps, 'direct' for all other apps"
+                  }
+               ]
+            },
+            "passenger_start_timeout" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "default"
+                     },
+                     "value" : 90
+                  }
+               ]
+            },
+            "passenger_startup_file" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "Autodetected"
+                  }
+               ]
+            },
+            "passenger_user" : {
+               "value_hierarchy" : [
+                  {
+                     "source" : {
+                        "line" : 57,
+                        "path" : "/etc/nginx/sites-enabled/test",
+                        "type" : "web-server-config"
+                     },
+                     "value" : "admin"
+                  },
+                  {
+                     "source" : {
+                        "type" : "dynamic-default-description"
+                     },
+                     "value" : "See the user account sandboxing rules"
+                  }
+               ]
+            }
+         }
+      }
+   },
+   "default_application_configuration" : {
+      "passenger_abort_websockets_on_process_shutdown" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : true
+            }
+         ]
+      },
+      "passenger_app_env" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : "production"
+            }
+         ]
+      },
+      "passenger_app_group_name" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "passenger_app_root plus passenger_app_env"
+            }
+         ]
+      },
+      "passenger_app_log_file" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "passenger_log_file"
+            }
+         ]
+      },
+      "passenger_app_root" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "Parent directory of the associated Nginx virtual host's root directory"
+            }
+         ]
+      },
+      "passenger_app_type" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "Autodetected"
+            }
+         ]
+      },
+      "passenger_debugger" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_direct_instance_request_address" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : "127.0.0.1"
+            }
+         ]
+      },
+      "passenger_force_max_concurrent_requests_per_process" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : -1
+            }
+         ]
+      },
+      "passenger_friendly_error_pages" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "On if passenger_app_env is development, off otherwise"
+            }
+         ]
+      },
+      "passenger_group" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "See the user account sandboxing rules"
+            }
+         ]
+      },
+      "passenger_load_shell_envvars" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : true
+            }
+         ]
+      },
+      "passenger_max_preloader_idle_time" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 300
+            }
+         ]
+      },
+      "passenger_max_request_queue_size" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 100
+            }
+         ]
+      },
+      "passenger_min_instances" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 1
+            }
+         ]
+      },
+      "passenger_nodejs" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : "node"
+            }
+         ]
+      },
+      "passenger_preload_bundler" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_python" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : "python"
+            }
+         ]
+      },
+      "passenger_restart_dir" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : "tmp"
+            }
+         ]
+      },
+      "passenger_ruby" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "line" : 3,
+                  "path" : "/etc/nginx/conf.d/mod-http-passenger.conf",
+                  "type" : "web-server-config"
+               },
+               "value" : "/usr/bin/passenger_free_ruby"
+            },
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : "ruby"
+            }
+         ]
+      },
+      "passenger_spawn_method" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "'smart' for Ruby apps, 'direct' for all other apps"
+            }
+         ]
+      },
+      "passenger_start_timeout" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 90
+            }
+         ]
+      },
+      "passenger_startup_file" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "Autodetected"
+            }
+         ]
+      },
+      "passenger_user" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "See the user account sandboxing rules"
+            }
+         ]
+      }
+   },
+   "default_location_configuration" : {
+      "passenger_buffer_response" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_buffer_size" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "4k|8k"
+            }
+         ]
+      },
+      "passenger_buffer_upload" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_buffers" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "8 4k|8k"
+            }
+         ]
+      },
+      "passenger_busy_buffers_size" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "8k|16k"
+            }
+         ]
+      },
+      "passenger_enabled" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_headers_hash_bucket_size" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 64
+            }
+         ]
+      },
+      "passenger_headers_hash_max_size" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 512
+            }
+         ]
+      },
+      "passenger_ignore_client_abort" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_intercept_errors" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_max_requests" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 0
+            }
+         ]
+      },
+      "passenger_request_buffering" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : true
+            }
+         ]
+      },
+      "passenger_request_queue_overflow_status_code" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 503
+            }
+         ]
+      },
+      "passenger_spawn_exception_status_code" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 500
+            }
+         ]
+      },
+      "passenger_sticky_sessions" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_sticky_sessions_cookie_attributes" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : "SameSite=Lax; Secure;"
+            }
+         ]
+      },
+      "passenger_sticky_sessions_cookie_name" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : "_passenger_route"
+            }
+         ]
+      }
+   },
+   "global_configuration" : {
+      "passenger_abort_on_startup_error" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_app_file_descriptor_ulimit" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "passenger_core_file_descriptor_ulimit"
+            }
+         ]
+      },
+      "passenger_core_file_descriptor_ulimit" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "The ulimits environment under which Nginx was started"
+            }
+         ]
+      },
+      "passenger_data_buffer_dir" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "$TMPDIR, or if not given, /tmp"
+            }
+         ]
+      },
+      "passenger_default_group" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "The primary group of passenger_default_user"
+            }
+         ]
+      },
+      "passenger_default_user" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : "nobody"
+            }
+         ]
+      },
+      "passenger_disable_anonymous_telemetry" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_disable_log_prefix" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_disable_security_update_check" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_dump_config_manifest" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "line" : 61,
+                  "path" : "/etc/nginx/nginx.conf",
+                  "type" : "web-server-config"
+               },
+               "value" : "on"
+            }
+         ]
+      },
+      "passenger_file_descriptor_log_file" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "line" : 60,
+                  "path" : "/etc/nginx/nginx.conf",
+                  "type" : "web-server-config"
+               },
+               "value" : "/var/log/passenger_file_descriptor.log"
+            }
+         ]
+      },
+      "passenger_instance_registry_dir" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "line" : 5,
+                  "path" : "/etc/nginx/conf.d/mod-http-passenger.conf",
+                  "type" : "web-server-config"
+               },
+               "value" : "/var/run/passenger-instreg"
+            },
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "Either /var/run/passenger-instreg, $TMPDIR, or /tmp (see docs)"
+            }
+         ]
+      },
+      "passenger_log_file" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "line" : 56,
+                  "path" : "/etc/nginx/nginx.conf",
+                  "type" : "web-server-config"
+               },
+               "value" : "/var/log/passenger.log"
+            },
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "Nginx's global error log"
+            }
+         ]
+      },
+      "passenger_log_level" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "line" : 57,
+                  "path" : "/etc/nginx/nginx.conf",
+                  "type" : "web-server-config"
+               },
+               "value" : 3
+            },
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 3
+            }
+         ]
+      },
+      "passenger_max_instances_per_app" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 0
+            }
+         ]
+      },
+      "passenger_max_pool_size" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 6
+            }
+         ]
+      },
+      "passenger_pool_idle_time" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 300
+            }
+         ]
+      },
+      "passenger_response_buffer_high_watermark" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 134217728
+            }
+         ]
+      },
+      "passenger_root" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "line" : 2,
+                  "path" : "/etc/nginx/conf.d/mod-http-passenger.conf",
+                  "type" : "web-server-config"
+               },
+               "value" : "/usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini"
+            }
+         ]
+      },
+      "passenger_show_version_in_header" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : false
+            }
+         ]
+      },
+      "passenger_socket_backlog" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 2048
+            }
+         ]
+      },
+      "passenger_spawn_dir" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "dynamic-default-description"
+               },
+               "value" : "Either $TMPDIR or /tmp"
+            }
+         ]
+      },
+      "passenger_stat_throttle_rate" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : 10
+            }
+         ]
+      },
+      "passenger_turbocaching" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : true
+            }
+         ]
+      },
+      "passenger_user_switching" : {
+         "value_hierarchy" : [
+            {
+               "source" : {
+                  "type" : "default"
+               },
+               "value" : true
+            }
+         ]
+      }
+   }
+}
