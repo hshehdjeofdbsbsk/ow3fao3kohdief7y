@@ -231,6 +231,21 @@ server {
     client_max_body_size 4G;
     access_log /srv/fastapi-app/log/nginx-access.log; # ✍️ 
     error_log  /srv/fastapi-app/log/nginx-error.log;  # ✍️
+    
+    # Proxy cache settings for FastAPI
+    proxy_cache cache;
+    proxy_cache_valid 200 302 10m;
+    proxy_cache_valid 404 1m;
+    proxy_cache_bypass $no_cache;
+    proxy_no_cache $no_cache;
+    proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+    proxy_cache_lock on;
+    proxy_cache_lock_timeout 5s;
+    
+    # Cache headers for debugging
+    add_header X-Cache-Status $upstream_cache_status always;
+    add_header X-Cache-Key "$host$request_uri" always;
+    
     include proxy_params;
     if (!-f $request_filename) {
       proxy_pass http://app_server;
