@@ -63,8 +63,8 @@ server {
   # include bots-block.conf;
   # include geoip-block.conf;
   root /srv/development_rozarioflowers.ru/public;
-  # modsecurity on; # On/Off ModSecurity WAF
-  # modsecurity_rules_file /etc/nginx/modsecurity.conf; # Load ModSecurity CRS
+  modsecurity on; # On/Off ModSecurity WAF
+  modsecurity_rules_file /app/modsecurity.conf; # Load ModSecurity CRS
   passenger_enabled on;
   passenger_app_group_name '🌹 Rozaro Flowers 💎 Padrino web application (development modus)';
   # passenger_app_log_file /var/log/passenger.development.log; # This option is available in Passenger Enterprise only
@@ -91,6 +91,7 @@ server {
   # ---
 
   modsecurity on; # Вкл./выкл.
+  modsecurity_rules_file /app/modsecurity.conf; # Загрузка правил ModSecurity
 
   error_page 403             /error/403.html;
   error_page 404             /error/404.html;
