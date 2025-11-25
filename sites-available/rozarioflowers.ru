@@ -143,10 +143,12 @@ server {
   location ~ ^(.*/)(index\.(html|htm|php))$ { return 301 $1$is_args$args; } # Перенаправление с индексных страниц на базовый URL, с сохранением параметров.
   location / {
     # limit_req zone=antibot burst=20 nodelay;
-    expires 1h;
+    expires 1m;
     include /etc/nginx/common_security_headers;
     more_set_headers 'Link: <https://$host$request_uri>; rel="canonical"'; # RFC 5988 # https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls
     passenger_set_header X-Legitimate-Robot $legitimate_robot_header;
+    passenger_set_header X-Request-Start $msec;
+    passenger_set_header X-Request-ID $request_id;
     rewrite ^/catalog$      /              permanent;
     rewrite ^/category$     /              permanent;
     rewrite ^/page/comment$ /feedback      permanent; # `/comment` - не используется из-за привлекательности для спам активности. Honey Pot можно туда ставить смело ☝️
@@ -157,7 +159,9 @@ server {
     rewrite ^/news/druzhba-%E2%80%93-eto-magiya-magicheskaya-druzhba$ /news/druzhba-eto-magiya-magicheskaya-druzhba permanent; # CRUTCH
     include allowed_list; include disallowed_list; # include deny_all;
   }
-  location ~ ^/.+(\.json)(\?.+)?$ { try_files $uri $uri/ @public @grunt @passenger; }
+  location ~ ^/.+/__sinatra__/500.png$                      { try_files $uri $uri/ @passenger; } # 🥃
+  location ~ ^/.+/sidekiq/.+\.(js|css|png)(\?.+)?$          { try_files $uri $uri/ @passenger; } # 🥋
+  location ~ ^/.+\.(html|htm|dtd|xml|json|csv|txt)(\?.+)?$  { try_files $uri $uri/ @public @grunt @passenger; } # 🔪
   location @public {
     passenger_enabled off;
     internal;
@@ -177,7 +181,7 @@ server {
     passenger_document_root /srv/rozarioflowers.ru/public;
     passenger_min_instances 1;
     include proxy_params;
-    expires 1h;
+    expires 1m;
     include common_security_headers;
     passenger_set_header X-Legitimate-Robot $legitimate_robot_header;
   }
@@ -214,7 +218,7 @@ server {
     expires 1y; # Устанавливаем срок действия кэша на 1 год
     include common_access_control_headers;
   }
-  location ~* ^.+\.(bmp|webp|gif|svg|js|css|mp3|ogg|mpe?g|avi|zip|gz|bz2?|rar|ico|js|html)(\?v=[a-zA-Z0-9\.\-_]+)?$ {
+  location ~* ^.+\.(bmp|webp|gif|svg|js|css|mp3|ogg|mpe?g|avi|zip|gz|bz2?|rar|ico|js)(\?v=[a-zA-Z0-9\.\-_]+)?$ {
     passenger_enabled off;
     if ($redirect_url) { return 301 $redirect_url; } # Link consolidation to SLD. #UD9SSIU3
     try_files $uri @public =404;

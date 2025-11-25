@@ -2,6 +2,7 @@
 
 # kill /run/nginx.pid
 
+# sudo passenger-config restart-all
 # sudo passenger-config restart-app /srv/development_rozarioflowers.ru # passenger-config restart-app <path/to/app>
 # passenger-status --verbose
 # sudo passenger-memory-stats
@@ -109,10 +110,10 @@ server {
 
   include allowed_list; include disallowed_list; include deny_all; # ㊙️
 
-  include abuse_logger; # 🫦 Sweet Dreams 👾
+  include abuse_logger; # 👾
   include locations/highway_to_hell; # 🐐 https://runt-of-the-web.com/jesus-is-a-jerk/#8
   # include locations/markov_source; # Ψ Ⓧ  騒
-  include locations/admin.dev; # 🧘‍
+  include locations/admin.dev;
   include locations/payment; # 💳
   location /comment  { return 444; } # 🌊
   # location /feedback {
@@ -130,18 +131,21 @@ server {
     # add_header Nginx-Location-1 "true";
     passenger_set_header X-Nginx-Passenger-Context "location /"; # 🏷
     passenger_set_header X-Legitimate-Robot $legitimate_robot_header; # 🤖
+    passenger_set_header X-Request-Start $msec;
+    passenger_set_header X-Request-ID $request_id;
     rewrite ^/catalog$      /              permanent; # 📁
     rewrite ^/category$     /              permanent; # 📁
     rewrite ^/page/comment$ /feedback      permanent; # 🌊 `/comment` - не используется из-за привлекательности для спам активности. Honey Pot можно туда ставить смело ☝️
     rewrite ^/contacts$     /page/contacts permanent; # ✉️
     rewrite ^/company$      /page/company  permanent; # 🌷
-    rewrite ^/discount$     /page/discount permanent; # %
+    rewrite ^/discount$     /page/discount permanent; # 🈹
     rewrite ^/dostavka$     /page/dostavka permanent; # 🚚
     include allowed_list; include disallowed_list; include deny_all; # ㊙️
   }
-  location ~ ^/mini-profiler-resources/.+(\.js|\.css)(\?.+)?$ { try_files $uri $uri/ @passenger; } # 🐬
-  location ~ ^/.+/__sinatra__/500.png$                        { try_files $uri $uri/ @passenger; } # 🥃
-  location ~ ^/.+(\.json)(\?.+)?$                             { try_files $uri $uri/ @public @grunt @passenger; } # 🔪
+  location ~ ^/.+/__sinatra__/500.png$                      { try_files $uri $uri/ @passenger; } # 🥃
+  location ~ ^/mini-profiler-resources/.+\.(js|css)(\?.+)?$ { try_files $uri $uri/ @passenger; } # 🐬
+  location ~ ^/.+/sidekiq/.+\.(js|css|png)(\?.+)?$          { try_files $uri $uri/ @passenger; } # 🥋
+  location ~ ^/.+\.(html|htm|dtd|xml|json|csv|txt)(\?.+)?$  { try_files $uri $uri/ @public @grunt @passenger; } # 🔪
   location @public { # 🌏
     passenger_enabled off;
     internal;
@@ -149,7 +153,7 @@ server {
     try_files $uri @grunt =404;
     add_header 'X-Nginx-Location-Public' 'true' always; # 🏷
   }
-  location @grunt { # 🐗 vk.cc/cRk3u6
+  location @grunt { # 🐗 https://github.com/gruntjs/gruntjs.com/blob/3bcc999dfffbe9d88de9f99104e5dac8fc55facd/src/img/grunt-logo.svg
     passenger_enabled off;
     internal;
     root /srv/grunt/dest/;
@@ -161,9 +165,9 @@ server {
     passenger_base_uri /;
     passenger_app_root /srv/development_rozarioflowers.ru;
     passenger_document_root /srv/development_rozarioflowers.ru/public;
-    # passenger_max_requests 666;    # This feature is only available in Phusion Passenger Enterprise # 💰
-    # passenger_memory_limit 256;    # This feature is only available in Phusion Passenger Enterprise # 💰
-    # passenger_max_request_time 10; # This feature is only available in Phusion Passenger Enterprise # 💰
+    # passenger_max_requests 666;    # This feature is only available in Phusion Passenger Enterprise 💰
+    # passenger_memory_limit 256;    # This feature is only available in Phusion Passenger Enterprise 💰
+    # passenger_max_request_time 10; # This feature is only available in Phusion Passenger Enterprise 💰
     passenger_min_instances 1;
     passenger_set_header X-Nginx-Passenger-Context "location @passenger"; # 🏷
     include proxy_params;
@@ -179,7 +183,7 @@ server {
     include common_security_headers;
     return 204;
   }
-  location ~* \.(ttf|woff|woff2|eot|svg)(\?v=[a-zA-Z0-9\.\-_]+)?$ { # 🔤
+  location ~* \.(ttf|woff|woff2|eot)(\?v=[a-zA-Z0-9\.\-_]+)?$ { # 🔤 Font files
     passenger_enabled off;
     if ($redirect_url) { return 301 $redirect_url; } # Link consolidation to SLD. #UD9SSIU3
     try_files $uri @public =404; # @passenger;

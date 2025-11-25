@@ -1,6 +1,6 @@
 *.bak
 .htpasswd
-modsecurity.conf
+# modsecurity.conf
 highway_to_hell.py
 markov_source
 block.map.include
@@ -10,7 +10,7 @@ allowed_list.d
 bots-block.conf
 common_access_control_headers
 common_security_headers
-custom-modsecurity.conf
+# custom-modsecurity.conf
 deny_all
 disallowed_list
 geoip-block.conf
